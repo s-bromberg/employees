@@ -1,3 +1,5 @@
+import './stylesheets/EmployeeCard.css'
+
 export default function EmployeeCard({ employee, employees, setSelectedEmployee }) {
   if (!employee) return null;
 
@@ -9,7 +11,7 @@ export default function EmployeeCard({ employee, employees, setSelectedEmployee 
   }
 
   return (
-    <div>
+    <div id='card'>
       <h2>{prefix}. {first} {last}</h2>
       <ul>
         {team && <li>Team: {team}</li>}

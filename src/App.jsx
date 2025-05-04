@@ -9,12 +9,11 @@ function App() {
   const [employees, setEmployees] = useState(
     localStorage.employees ? JSON.parse(localStorage.employees) : employeesData
   );
-  console.log(employees);
-
+  console.log(employees)
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   return (
-    <>
+    <div id='app'>
       <BonusTable
         employees={employees}
         setEmployees={setEmployees}
@@ -29,7 +28,7 @@ function App() {
         employee={selectedEmployee}
         setSelectedEmployee={setSelectedEmployee}
       />
-    </>
+    </div>
   )
 }
 

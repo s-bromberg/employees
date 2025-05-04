@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState } from 'react';
+import './stylesheets/AddBonusBtn.css';
 
 export default function AddBonusBtn({ employees, setEmployees }) {
-  const [bonusAdded, setBonusAdded] = useState(false);
+  const employeeBonus = employees.find(e => e.title === 'Employee').bonus;
+  const [bonusAdded, setBonusAdded] = useState(
+    employeeBonus > .05 ? true : false
+  );
 
-  const clickHandler = () => {
+  const handleClick = () => {
     if (bonusAdded) return;
 
     const updatedEmployees = employees.map(e => {
@@ -18,7 +22,16 @@ export default function AddBonusBtn({ employees, setEmployees }) {
   }
 
   return (
-    <button onClick={clickHandler} disabled={bonusAdded} >
+    <button
+      id='bonus-btn'
+      onClick={handleClick}
+      disabled={bonusAdded}
+      style={{
+        backgroundColor: 'lightblue',
+        borderRadius: '.3em',
+        marginTop: '.3em'
+      }}
+    >
       👏 Add 5% Bonus 👏
     </button>
   )

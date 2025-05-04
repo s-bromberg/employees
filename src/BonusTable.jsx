@@ -5,18 +5,11 @@ export default function BonusTable({ employees, setSelectedEmployee, setEmployee
   const [nameSortedAsc, setNameSortedAsc] = useState(false);
   const [bonusSortedAsc, setBonusSortedAsc] = useState(false);
 
-  const tableData = employees.map(e =>
-    <tr
-      className='clickable'
-      key={e.last}
-      onClick={() => setSelectedEmployee(e)}
-    >
-      <th>{e.last}</th>
-      <th>${(e.salary * e.bonus).toFixed(2)}</th>
-    </tr>
-  );
-
-  const handleSort = sortFunc => setEmployees([...employees].sort(sortFunc));
+  const handleSort = compareFn => {
+    const employeesSorted = [...employees].sort(compareFn);
+    setEmployees(employeesSorted);
+    localStorage.setItem('employees', JSON.stringify(employeesSorted));
+  }
 
   const handleNameSort = () => {
     setNameSortedAsc(!nameSortedAsc);
@@ -38,31 +31,40 @@ export default function BonusTable({ employees, setSelectedEmployee, setEmployee
     }
   };
 
+  const tableData = employees.map(e =>
+    <tr
+      className='clickable'
+      key={e.last}
+      onClick={() => setSelectedEmployee(e)}
+    >
+      <td>{e.last}</td>
+      <td className='bonus'>${Number((e.salary * e.bonus)).toFixed(2)}</td>
+    </tr>
+  );
+
   return (
     <table>
       <thead>
         <tr>
-          <th
-            className='clickable'
-            onClick={handleNameSort}
-          >
-            Sort
+          <th>
+            
+            Employee
           </th>
-          <th
-            className='clickable'
-            onClick={handleBonusSort}
-          >
-            Sort
+          <th>
+            
+            Bonus
           </th>
-        </tr>
-        <tr>
-          <th>Employee</th>
-          <th>Bonus</th>
         </tr>
       </thead>
       <tbody>
         {tableData}
       </tbody>
+      <tfoot>
+        <tr >
+          <td><button onClick={handleNameSort}> Sort by Name</button></td>
+          <td><button onClick={handleBonusSort}> Sort by Bonus </button></td>
+        </tr>
+      </tfoot>
     </table>
   );
 }
