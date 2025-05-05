@@ -1,13 +1,10 @@
-table {
-  /* border: 1px solid black; */
-}
-
 tbody tr:nth-child(even) {
   background-color: lightblue;
 }
 
 .bonus {
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 tfoot tr {

@@ -9,7 +9,7 @@ function App() {
   const [employees, setEmployees] = useState(
     localStorage.employees ? JSON.parse(localStorage.employees) : employeesData
   );
-  console.log(employees)
+
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
   return (
@@ -29,7 +29,7 @@ function App() {
         setSelectedEmployee={setSelectedEmployee}
       />
     </div>
-  )
+  );
 }
 
 export default App;

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './stylesheets/AddBonusBtn.css';
 
 export default function AddBonusBtn({ employees, setEmployees }) {
   const employeeBonus = employees.find(e => e.title === 'Employee').bonus;
@@ -23,7 +22,6 @@ export default function AddBonusBtn({ employees, setEmployees }) {
 
   return (
     <button
-      id='bonus-btn'
       onClick={handleClick}
       disabled={bonusAdded}
       style={{
@@ -34,5 +32,5 @@ export default function AddBonusBtn({ employees, setEmployees }) {
     >
       👏 Add 5% Bonus 👏
     </button>
-  )
+  );
 }

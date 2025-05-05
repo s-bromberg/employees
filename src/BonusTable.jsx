@@ -32,13 +32,19 @@ export default function BonusTable({ employees, setSelectedEmployee, setEmployee
   };
 
   const tableData = employees.map(e =>
-    <tr
-      className='clickable'
-      key={e.last}
-      onClick={() => setSelectedEmployee(e)}
-    >
-      <td>{e.last}</td>
-      <td className='bonus'>${Number((e.salary * e.bonus)).toFixed(2)}</td>
+    <tr key={e.last}>
+      <td
+        className='clickable'
+        onClick={() => setSelectedEmployee(e)}
+      >
+        {e.last}
+      </td>
+      <td className='bonus'>
+        <span>$</span>
+        <span>
+          {Number((e.salary * e.bonus)).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+        </span>
+      </td>
     </tr>
   );
 
@@ -47,11 +53,9 @@ export default function BonusTable({ employees, setSelectedEmployee, setEmployee
       <thead>
         <tr>
           <th>
-            
             Employee
           </th>
           <th>
-            
             Bonus
           </th>
         </tr>
@@ -61,8 +65,8 @@ export default function BonusTable({ employees, setSelectedEmployee, setEmployee
       </tbody>
       <tfoot>
         <tr >
-          <td><button onClick={handleNameSort}> Sort by Name</button></td>
-          <td><button onClick={handleBonusSort}> Sort by Bonus </button></td>
+          <td><button onClick={handleNameSort}>Sort by Name</button></td>
+          <td><button onClick={handleBonusSort}>Sort by Bonus </button></td>
         </tr>
       </tfoot>
     </table>
